@@ -1,0 +1,35 @@
+{
+  "name": "gulp-dynamic-ui-kit",
+  "version": "0.1.0",
+  "description": "Dynamic UI-Kit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavel-yagodin/gulp-dynamic-ui-kit.git"
+  },
+  "author": "Pavel Yagodin <pavel.yagodin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pavel-yagodin/gulp-dynamic-ui-kit/issues"
+  },
+  "homepage": "https://github.com/pavel-yagodin/gulp-dynamic-ui-kit#readme",
+  "keywords": [
+    "jade",
+    "mixin",
+    "UI-Kit",
+    "blocks",
+    "block"
+  ],
+  "devDependencies": {
+    "event-stream": "^3.1.7",
+    "gulp": "^3.8.5",
+    "gulp-jasmine": "^2.1.0",
+    "gulp-jsbeautifier": "^1.0.1",
+    "gulp-jscs": "^3.0.0",
+    "gulp-jshint": "^1.8.4",
+    "jshint-stylish": "^2.0.1"
+  }
+}

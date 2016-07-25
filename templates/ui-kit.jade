@@ -1,0 +1,95 @@
+<% var data = items;  _.forEach(items, function(item) { %>include /blocks/<%= item.mixin %>/<%= item.mixin %>
+<% }); var preview = {}; %>
++b.uikit
+	+e.header
+		+e.logo
+			+icon('logo').icon
+		+e.title Dynamic UI-Kit
+	+e.list
+<% _.forEach(items, function(item, key) { %><%
+%>		+e.item
+			+b.uikit-item
+				+e.navigation.js-uikit-open-mods(data-item='<%= key %>' data-key='0')
+				+e.source.js-uikit-open-code(data-item='<%= key %>' data-key='0')
+				<% if(item.title){ %>+e.title <%= item.title %><% } %><%
+				%><%
+				preview = Object.assign({}, item, item.list[0]);
+				if (preview.options) {
+					if (preview.options.id) {
+						preview.options.id = preview.options.id + 'List' + key;
+					}
+				}
+				%>
+				+e.preview<% if(preview.width || preview.height){ %>(style='<% if(preview.width){ %>width: <%= preview.width %>;<% } %><% if(preview.height){ %>height: <%= preview.height %>;<% } %>')<% } %>
+					+e.preview-wrapper<% if(preview.background){ %>_style_background(style='background-color: <%= preview.background %>;')<% } %>
+						+<%= preview.mixin %><% if(preview.options){ %>(<%= JSON.stringify(preview.options) %>)<% } %><% if(preview.mods){ %><%
+							%><% _.forEach(preview.mods, function(key, mod) { %><%
+								%>._<%= mod %>_<%= key %><%
+							%><% }); %><%
+						%><% } %><% if(preview.attr){ %>(<% var i = 0; _.forEach(preview.attr, function(attrValue, attrKey) { %><% if(i!=0){ %> <% } %><%= attrKey %>="<%= attrValue %><% if(attrKey=='id'){ %>List<%= key %><% } %>"<% i++; }); %>)<% } %><%
+						%><% if(preview.text){ %>
+							| <%= preview.text %><%
+						%><% } %><%
+if (preview.options) { if (preview.options.id) { preview.options.id = preview.options.id.replace('List' + key, '');}}
+	%>
+
+<% }); %>
+<% _.forEach(items, function(item, index) { _.forEach(item.list, function(mod, key) { preview = Object.assign({}, item, mod); if (preview.options) { if (preview.options.id) { preview.options.id = preview.options.id + 'Code' + index + 'Demo' + key;}} %>
++b.uikit-code.js-uikit-code(data-item='<%= index %>' data-key='<%= key %>')
+	+e.wrapper.js-uikit-wrapper
+		+e('a').close.js-uikit-close(href=jv0)
+		<% if(item.title){ %>+e.title <%= preview.title %><% } %>
+		+e.flex
+			+e.preview<% if(preview.width || preview.height){ %>(style='<% if(preview.width){ %>width: <%= preview.width %>;<% } %><% if(preview.height){ %>height: <%= preview.height %>;<% } %>')<% } %>
+				+e.preview-wrapper<% if(preview.background){ %>_style_background(style='background-color: <%= preview.background %>;')<% } %>
+					+<%= preview.mixin %><% if(preview.options){ %>(<%= JSON.stringify(preview.options) %>)<% } %><%
+
+					%><% if(preview.mods){ %><%
+						%><% _.forEach(preview.mods, function(key, mod) { %><%
+							%>._<%= mod %>_<%= key %><%
+						%><% }); %><%
+					%><% } %><% if(preview.attr){ %>(<% var i = 0; _.forEach(preview.attr, function(attrValue, attrKey) { %><% if(i!=0){ %> <% } %><%= attrKey %>="<%= attrValue %><% if(attrKey=='id'){ %>Code<%= index %>Demo<%= key %><% } %>"<% i++; }); %>)<% } %><%
+
+					%><% if(preview.text){ %>
+						| <%= preview.text %><%
+					%><% } %>
+
+			+e('code').code.<% if (preview.options) { if (preview.options.id) { preview.options.id = preview.options.id.replace('Code' + index + 'Demo' + key, ''); }} %>
+				<span class="uikit-code__blue">include</span> <span class="uikit-code__white"><%= JSON.stringify('/blocks/'+preview.mixin+'/'+preview.mixin).replace(/^"/g, '').replace(/"$/g, '') %></span><br><br>
+				<span class="uikit-code__green"><%= JSON.stringify('+'+preview.mixin).replace(/^"/g, '').replace(/"$/g, '') %></span><% if(preview.options){ %>(<span class="uikit-code__yellow"><%= JSON.stringify(preview.options, undefined, "<i></i>\t").replace(/\n/g, '\n\t\t\t\t<br>').replace(/\"([a-zA-Z0-1]+)\"\:/g, '$1:').replace(/\"/g, "'") %></span>)<% } %><% if(preview.mods){ %><span class="uikit-code__purple"><%
+					%><% _.forEach(preview.mods, function(key, mod) { %><%
+						%>._<%= mod %>_<%= key %><%
+					%><% }); %><%
+				%></span><% } %><% if(preview.attr){ %>(<% var i = 0; _.forEach(preview.attr, function(attrValue, attrKey) { %><% if(i!=0){ %> <% } %><span class="uikit-code__green"><%= attrKey %></span>=<span class="uikit-code__yellow">'<%= attrValue %>'</span><% i++; }); %>)<% } %>
+				<% if(preview.text){ %><br><i></i><%= "\t" %>
+				<%= JSON.stringify('| '+preview.text).replace(/^"/g, '').replace(/"$/g, '') %>
+				<% } if (preview.options) { if (preview.options.id) { preview.options.id = preview.options.id.replace('Code' + index + 'Demo' + key, ''); }} %>
+
+<% });}); %>
+
+
+<% _.forEach(data, function(item, index) { preview = Object.assign({}, item, item.list[0]); %>
++b.uikit-mods.js-uikit-mods(data-item='<%= index %>')
+	+e.wrapper.js-uikit-wrapper
+		+e('a').close.js-uikit-close(href=jv0)
+		<% if(preview.title){ %>+e.title <%= item.title || preview.title %><% } %>
+		+e.list<% _.forEach(item.list, function(mod, key) { delete item.list; preview = Object.assign({}, item, mod); if (preview.options) { if (preview.options.id) { preview.options.id = preview.options.id + 'Mods' + index + 'Demo' + key;}}  %>
+			+e.item
+				+b.uikit-mod
+					+e.source.js-uikit-open-code(data-item='<%= index %>' data-key='<%= key %>')
+					<% if(preview.title){ %>+e.title <%= preview.title %><% } %>
+					+e.preview<% if(preview.width || preview.height){ %>(style='<% if(preview.width){ %>width: <%= preview.width %>;<% } %><% if(preview.height){ %>height: <%= preview.height %>;<% } %>')<% } %>
+						+e.preview-wrapper<% if(preview.background){ %>_style_background(style='background-color: <%= preview.background %>;')<% } %>
+							+<%= preview.mixin %><% if(preview.options){ %>(<%= JSON.stringify(preview.options) %>)<% } %><%
+
+							%><% if(preview.mods){ %><%
+								%><% _.forEach(preview.mods, function(key, mod) { %><%
+									%>._<%= mod %>_<%= key %><%
+								%><% }); %><%
+							%><% } %><% if(preview.attr){ %>(<% var i = 0; _.forEach(preview.attr, function(attrValue, attrKey) { %><% if(i!=0){ %> <% } %><%= attrKey %>="<%= attrValue %><% if(attrKey=='id'){ %>Mods<%= index %>Demo<%= key %><% } %>"<% i++; }); %>)<% } %><%
+
+							%><% if(preview.text){ %>
+								| <%= preview.text %><%
+							%><% } %>
+	<% }); %>
+<% }); %>
