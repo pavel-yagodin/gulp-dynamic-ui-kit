@@ -1,6 +1,6 @@
 {
   "name": "gulp-dynamic-ui-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Dynamic UI-Kit",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "gulp-jsbeautifier": "^1.0.1",
     "gulp-jscs": "^3.0.0",
     "gulp-jshint": "^1.8.4",
-    "jshint-stylish": "^2.0.1"
+    "jshint-stylish": "^2.0.1",
+    "lodash": "^4.14.0"
   }
 }
