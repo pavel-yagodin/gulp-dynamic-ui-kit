@@ -79,7 +79,7 @@ if (preview.options) { if (preview.options.id) { preview.options.id = preview.op
 					+e.source.js-uikit-open-code(data-item='<%= index %>' data-key='<%= key %>')
 					<% if(preview.title){ %>+e.title <%= preview.title %><% } %>
 					+e.preview<% if(preview.width || preview.height){ %>(style='<% if(preview.width){ %>width: <%= preview.width %>;<% } %><% if(preview.height){ %>height: <%= preview.height %>;<% } %>')<% } %>
-						+e('form').preview-wrapper<% if(preview.background){ %>_style_background(style='background-color: <%= preview.background %>;')<% } %>
+						+e.preview-wrapper<% if(preview.background){ %>_style_background(style='background-color: <%= preview.background %>;')<% } %>
 							+<%= preview.mixin %><% if(preview.options){ %>(<%= JSON.stringify(preview.options) %>)<% } %><%
 
 							%><% if(preview.mods){ %><%
